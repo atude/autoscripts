@@ -1,5 +1,5 @@
 # autoscripts
-A collection of scripts for bash interfaces
+A collection of scripts for personal use.
 
 > **autovenv**: Initialise/run virtual env in current directory
 
