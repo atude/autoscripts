@@ -1,0 +1,23 @@
+#!/bin/bash
+#autovenv by moz
+
+echo "--> Creating virtualenv..."
+virtualenv --python=/usr/bin/python3 venv
+echo "--> Activating virtualenv..."
+source ./venv/bin/activate
+
+echo "--> Checking if requirements.txt exists..."
+
+file=./requirements.txt
+if [ -e "$file" ]; then
+    echo "--> Found requirements.txt; installing modules..."
+	pip3 install -r "$file"
+else 
+    echo "--> Could not find requirements.txt; installing flask and flask-login instead..."
+	pip3 install flask
+	pip3 install flask-login
+fi
+
+echo "--> Auto venv finished."
+clear
+echo "--> Loaded into venv:"
