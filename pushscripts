@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo " --> Preparing and pushing scripts to git..."
+cp ~/.zshrc /c/core/_scripts/
 cd /c/core/_scripts
 git add .
 git commit -m "updating scripts"
