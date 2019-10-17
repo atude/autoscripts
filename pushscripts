@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "${Red} »»» Preparing and pushing scripts to git..."
+echo -e "${Red} »» Preparing and pushing scripts to git..."
 cp ~/.zshrc /c/core/_scripts/
 cd /c/core/_scripts
 git add .
