@@ -3,10 +3,9 @@
 PATH="/c/core/_scripts:$PATH"
 # Enable cd via custom goto
 alias goto='. /c/core/_scripts/goto'
-#
-#
-# (!! fails) Add code for windows vscode to path
-# PATH="$PATH:/c/Users/mozam/AppData/Local/Programs/Microsoft\ VS\ Code/bin"
+# Add windows apps to cli
+alias code='"/c/Users/mozam/AppData/Local/Programs/Microsoft VS Code/bin/code"'
+alias explorer='/c/windows/explorer.exe'
 #
 # <- End custom edits
 #
@@ -54,7 +53,7 @@ DISABLE_LS_COLORS="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -86,57 +85,26 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# NVM full load manual:
+export NVM_NOTSTART='true'
+Blue='\033[0;34m'
+Green='\033[0;32m'
+Yellow='\033[0;33m' 
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# NVM Lazy Load v3
+nvminit() {
+    if [ $NVM_NOTSTART = 'true' ]; then		
+        echo -e "${Blue}==> Starting NVM..."
+        export NVM_DIR=~/.nvm
+        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-# NVM
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#
-# New NVM Lazy Load:
-nvm() {
-    unset -f nvm
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-    nvm "$@"    
+	      export NVM_NOTSTART='sfalse'
+        echo -e "${Green}==> NVM ready for use."
+    else
+        echo -e "${Yellow}==> NVM already setup."
+    fi
 }
 
-#node() {
-#    unset -f node
-#    export NVM_DIR=~/.nvm
-#    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-#    node "$@"    
-#}
-#
-#npm() {
-#    unset -f npm
-#    export NVM_DIR=~/.nvm    
-#    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-#    npm "$@"    
-#}
-#
 # 24hr compinit load instead of every open
 autoload -Uz compinit
 
