@@ -87,21 +87,22 @@ source $ZSH/oh-my-zsh.sh
 
 # NVM full load manual:
 export NVM_NOTSTART='true'
-Blue='\033[0;34m'
-Green='\033[0;32m'
-Yellow='\033[0;33m' 
+export Blue='\033[0;34m'
+export Red='\033[0;31m'
+export Green='\033[0;32m'
+export Yellow='\033[0;33m' 
 
 # NVM Lazy Load v3
 nvminit() {
     if [ $NVM_NOTSTART = 'true' ]; then		
-        echo -e "${Blue}==> Starting NVM..."
+        echo -e "${Blue} »» Starting NVM..."
         export NVM_DIR=~/.nvm
         [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 	      export NVM_NOTSTART='sfalse'
-        echo -e "${Green}==> NVM ready for use."
+        echo -e "${Green} »» NVM ready for use."
     else
-        echo -e "${Yellow}==> NVM already setup."
+        echo -e "${Yellow} »» NVM already setup."
     fi
 }
 
