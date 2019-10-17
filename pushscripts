@@ -1,8 +1,9 @@
 #!/bin/bash
 
-echo -e "${Red} »» Preparing and pushing scripts to git..."
+echo -e "${Blue} »» Preparing and pushing scripts to git...${Yellow}"
 cp ~/.zshrc /c/core/_scripts/
 cd /c/core/_scripts
 git add .
 git commit -m "updating scripts"
 git push
+echo -e "${Green} »» Pushed to 'autoscripts' repo."
