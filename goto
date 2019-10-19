@@ -2,6 +2,12 @@
 
 cd /c/core/_"$1"/ >/dev/null 2>&1;
 
+if [ "$1" = "desktop" ];
+then 
+  cd /c/Users/mozam/desktop
+  exit
+fi
+
 if [ "$2" != "" ];
 then   
   if cd ./courses/"$2" >/dev/null 2>&1;

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$#" -lt 2 ];
+then
+  echo -e "${Yellow} »» Usage: zcp [course-code] {file1, file2, ...}"
+  exit
+fi
+
+echo -e "${Blue} »» Moving ${@:2} to ~/code/$1${Yellow}"
+scp "${@:2}" z5209948@cse.unsw.edu.au:~/code/"$1"
+
+if [ $? -eq 0 ]; then
+  echo -e "${Green} »» Moved files to UNSW servers successfully."
+else
+  echo -e "${Red} »» Failed to move files - check logs for details."
+fi
