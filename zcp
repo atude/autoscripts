@@ -12,5 +12,5 @@ scp "${@:2}" z5209948@cse.unsw.edu.au:~/code/"$1"
 if [ $? -eq 0 ]; then
   echo -e "${Green} »» Moved files to UNSW servers successfully."
 else
-  echo -e "${Red} »» Failed to move files - check logs for details."
+  echo -e "${Red} »» Failed to move files; check output for details."
 fi

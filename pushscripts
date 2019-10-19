@@ -6,4 +6,9 @@ cd /c/core/_scripts
 git add .
 git commit -m "updating scripts"
 git push
-echo -e "${Green} »» Pushed to 'autoscripts' repo."
+
+if [ $? -eq 0 ]; then
+  echo -e "${Green} »» Pushed to 'autoscripts' repo."
+else
+  echo -e "${Red} »» Failed to push; check output for details."
+fi
