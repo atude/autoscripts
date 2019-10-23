@@ -1,8 +1,8 @@
 # -> My custom edits:
 # Add scripts to path
-PATH="/c/core/_scripts:$PATH"
+PATH="~/corelx/_scripts:$PATH"
 # Enable cd via custom goto
-alias goto='. /c/core/_scripts/goto'
+alias goto='. ~/corelx/_scripts/goto'
 # Add windows apps to cli
 alias code='"/c/Users/mozam/AppData/Local/Programs/Microsoft VS Code/bin/code"'
 alias explorer='/c/windows/explorer.exe'
