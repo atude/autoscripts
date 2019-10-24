@@ -6,7 +6,7 @@ then
   exit
 fi
 
-echo -e "${Blue} »» Moving ${@:2} to ~/code/$1${Yellow}"
+echo -e "${Blue} »» Moving ${@:2} to remote ~/code/$1${Yellow}"
 scp "${@:2}" z5209948@cse.unsw.edu.au:~/code/"$1"
 
 if [ $? -eq 0 ]; then

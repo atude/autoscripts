@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /c/core/_"$1"/ >/dev/null 2>&1;
+cd ~/corelx/_"$1"/ >/dev/null 2>&1;
 
 if [ "$1" = "desktop" ];
 then 
