@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo -e "${Blue} »» Preparing and pushing scripts to git...${Yellow}"
-cp ~/.zshrc ~/corelx/_scripts/
-cd  ~/corelx/_scripts/
+cp ~/.zshrc ~/corelx/_scripts
+cd  ~/corelx/_scripts
 git add .
 if [ "$1" != "" ] then;
   git commit -m "$1"
-else 
+else
   git commit -m "[Auto commit; no message provided]"
 fi
 git push

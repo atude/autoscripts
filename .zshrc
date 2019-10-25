@@ -1,6 +1,6 @@
 # -> My custom edits:
 # Add scripts to path
-PATH="~/corelx/_scripts:$PATH"
+PATH="$PATH:/home/atude/corelx/_scripts/"
 # Enable cd via custom goto
 alias goto='. ~/corelx/_scripts/goto'
 # Add windows apps to cli
@@ -61,7 +61,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -107,18 +107,18 @@ nvminit() {
 }
 
 # 24hr compinit load instead of every open
-autoload -Uz compinit
-
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-
-compinit -C
+#autoload -Uz compinit
+#
+#for dump in ~/.zcompdump(N.mh+24); do
+#  compinit
+#done
+#
+#compinit -C
 #
 #
 # Disable git status check
-function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX" 
-}
+#function git_prompt_info() {
+#  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+#  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX" 
+#}
 #
