@@ -4,11 +4,7 @@ echo -e "${Blue} »» Preparing and pushing scripts to git...${Yellow}"
 cp ~/.zshrc ~/corelx/_scripts
 cd  ~/corelx/_scripts
 git add .
-if [ "$1" != "" ] then;
-  git commit -m "$1"
-else
-  git commit -m "[Auto commit; no message provided]"
-fi
+git commit -m "[Auto commit; no message provided]"
 git push
 
 if [ $? -eq 0 ]; then
