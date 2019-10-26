@@ -93,18 +93,18 @@ export Green='\033[0;32m'
 export Yellow='\033[0;33m' 
 
 # NVM Lazy Load v3
-nvminit() {
-    if [ $NVM_NOTSTART = 'true' ]; then		
-        echo -e "${Blue} »» Starting NVM..."
+#nvminit() {
+#    if [ $NVM_NOTSTART = 'true' ]; then		
+#       echo -e "${Blue} »» Starting NVM..."
         export NVM_DIR=~/.nvm
         [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-	      export NVM_NOTSTART='sfalse'
-        echo -e "${Green} »» NVM ready for use."
-    else
-        echo -e "${Yellow} »» NVM already setup."
-    fi
-}
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#	      export NVM_NOTSTART='false'
+#        echo -e "${Green} »» NVM ready."
+#    else
+#        echo -e "${Yellow} »» NVM already setup."
+#    fi
+#}
 
 # 24hr compinit load instead of every open
 #autoload -Uz compinit
