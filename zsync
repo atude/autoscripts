@@ -1,0 +1,33 @@
+#!/bin/bash
+# Auto sync from local to UNSW remote directories
+zid="z5209948"
+folder="~/code/${1}"
+sync_interval="10"
+
+if [ "$#" -ne 2 ];
+then
+  echo -e "${Yellow} »» Usage: zsync [course-code/../..] [local-dir/../..]"
+  exit
+fi
+
+echo -e "${Blue} »» Testing sync..."
+rsync -a "${2}" "${zid}@cse.unsw.edu.au:${folder}"
+
+clear
+if [ $? -eq 0 ]; then
+  echo -e "${Green} »» Completed sync test."
+else
+  echo -e "${Red} »» Failed to sync files; check output for details."
+  exit
+fi
+
+
+echo -e "${Blue} »»  Syncing from local $2 to remote ~/code/$1${Yellow}"
+echo -e "${Yellow} »» Leave this tab running in the background."
+
+while true; 
+do
+  rsync -a "${2}" "${zid}@cse.unsw.edu.au:~/code/${folder}"
+  sleep ${sync_interval}
+done
+

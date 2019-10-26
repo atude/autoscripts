@@ -1,24 +1,26 @@
-#!/bin/bash
-
-cd ~/corelx/_"$1"/ >/dev/null 2>&1;
+#!/bin/sh
 
 if [ "$1" = "desktop" ];
 then 
   cd /c/Users/mozam/desktop
-  exit
-fi
+elif [ "$#" -eq 0 ]; 
+then
+  cd ~/corelx
+else 
+  cd ~/corelx/_"$1"/ >/dev/null 2>&1;
 
-if [ "$2" != "" ];
-then   
-  if cd ./courses/"$2" >/dev/null 2>&1;
-  then
-  elif cd ./courses/comp"$2" >/dev/null 2>&1;
-  then 
-  elif cd ./courses/seng"$2" >/dev/null 2>&1;
-  then
-  elif cd ./courses/math"$2" >/dev/null 2>&1;
-  then
-  else
-   echo -e "${Red} »» Failed to goto directory @ $1 -> $2"
-  fi
-fi 
+  if [ "$2" != "" ];
+  then   
+    if cd ./courses/"$2" >/dev/null 2>&1;
+    then
+    elif cd ./courses/comp"$2" >/dev/null 2>&1;
+    then 
+    elif cd ./courses/seng"$2" >/dev/null 2>&1;
+    then
+    elif cd ./courses/math"$2" >/dev/null 2>&1;
+    then
+    else
+    echo -e "${Red} »» Failed to goto directory @ $1 -> $2"
+    fi
+  fi 
+fi

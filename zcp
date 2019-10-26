@@ -1,4 +1,5 @@
 #!/bin/bash
+zid="z5209948"
 
 if [ "$#" -lt 2 ];
 then
@@ -7,7 +8,7 @@ then
 fi
 
 echo -e "${Blue} »» Moving ${@:2} to remote ~/code/$1${Yellow}"
-scp "${@:2}" z5209948@cse.unsw.edu.au:~/code/"$1"
+scp "${@:2}" "${zid}@cse.unsw.edu.au:~/code/$1"
 
 if [ $? -eq 0 ]; then
   echo -e "${Green} »» Moved files to UNSW servers successfully."
