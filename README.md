@@ -7,9 +7,6 @@
 - *zid*: Your zID
 - *folder*: A local remote sub directory for quick access (Set to `~/` for home or if unsure)
 
-
-**UNSW Script Usage**
-
 >**zlogin:** Login to UNSW CSE servers remotely.
 >
 >*Usage:* `zlogin [server-name (e.g. grieg)]`
