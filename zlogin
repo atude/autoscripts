@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 zid="z5209948"
 
 if [ "$1" = "" ]; then

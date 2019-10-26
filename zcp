@@ -3,7 +3,7 @@ zid="z5209948"
 
 if [ "$#" -lt 2 ];
 then
-  echo -e "${Yellow} »» Usage: zcp [course-code] {file1, file2, ...}"
+  echo -e "${Yellow} »» Usage: zcp <course-code> <file1, file2, ...>"
   exit
 fi
 
