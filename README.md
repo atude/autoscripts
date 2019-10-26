@@ -7,7 +7,8 @@ __Change the following before using UNSW server scripts:
 zid: Your zID
 folder: A local remote sub directory for quick access (Set to `~/` for home or if unsure)
 
->**zlogin:** Login to UNSW CSE servers remotely. 
+>**zlogin:** Login to UNSW CSE servers remotely.
+>
 > __Usage:__ `zlogin [server-name (e.g. grieg)]`
 
 >**zcp:** Copy files from local to UNSW remote server.
