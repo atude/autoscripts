@@ -7,6 +7,7 @@
 - *zid*: Your zID
 - *folder*: A local remote sub directory for quick access (Set to `~/` for home or if unsure)
 
+
 **UNSW Script Usage**
 
 >**zlogin:** Login to UNSW CSE servers remotely.
@@ -22,7 +23,7 @@
 >*Usage:* `zsync <remote-folder/../> <local-dir/../> [interval{1s}]`
 
 
-**Other scripts**
+**Other Scripts**
 
 >**autovenv:** Auto generate a virtual env in current directory, cleanly
 >
