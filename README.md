@@ -5,7 +5,7 @@
 *Change the following before using UNSW server scripts:*
 
 - *zid*: Your zID
-- *folder*: A local remote sub directory for quick access (Set to `~/` for home or if unsure)
+- *folder*: A remote sub directory for quick access (Set to `~/` for home or if unsure)
 
 >**zlogin:** Login to UNSW CSE servers remotely.
 >
