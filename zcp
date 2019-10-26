@@ -1,14 +1,15 @@
 #!/bin/bash
 zid="z5209948"
+folder="~/code/"
 
 if [ "$#" -lt 2 ];
 then
-  echo -e "${Yellow} »» Usage: zcp <course-code> <file1, file2, ...>"
+  echo -e "${Yellow} »» Usage: zcp <remote-folder> <file1, file2, ...>"
   exit
 fi
 
-echo -e "${Blue} »» Moving ${@:2} to remote ~/code/$1${Yellow}"
-scp "${@:2}" "${zid}@cse.unsw.edu.au:~/code/$1"
+echo -e "${Blue} »» Moving ${@:2} to remote ${folder}${1}${Yellow}"
+scp "${@:2}" "${zid}@cse.unsw.edu.au:${folder}${1}"
 
 if [ $? -eq 0 ]; then
   echo -e "${Green} »» Moved files to UNSW servers successfully."

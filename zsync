@@ -1,17 +1,17 @@
 #!/bin/bash
 # Auto sync from local to UNSW remote directories
 zid="z5209948"
-folder="~/code/${1}"
+folder="~/code/"
 sync_interval="1"
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ];
 then
-  echo -e "${Yellow} »» Usage: zsync <course-code/../..> <local-dir/../..> [interval{1s}]"
+  echo -e "${Yellow} »» Usage: zsync <remote-folder/../> <local-dir/../> [interval{1s}]"
   exit
 fi
 
 echo -e "${Blue} »» Setting up sync..."
-rsync -a "${2}" "${zid}@cse.unsw.edu.au:${folder}"
+rsync -a "${2}" "${zid}@cse.unsw.edu.au:${folder}${1}"
 
 clear
 if [ $? -eq 0 ]; then
@@ -27,13 +27,13 @@ if [ "$#" -eq 3 ]; then
 else
   echo -e "${Yellow} »» No interval set; default set to 1s."
 fi
-echo -e "${Yellow} »» Leave this tab running in the background."
+echo -e "${Yellow} »» Leave this tab running in the background. Use ${Red}CTRL+C ${Yellow}to stop sync."
 
 while true; 
 do
-  rsync -a "${2}" "${zid}@cse.unsw.edu.au:${folder}"
+  rsync -a "${2}" "${zid}@cse.unsw.edu.au:${folder}${1}"
   if [ $? -eq 0 ]; then
-    echo -e "${Blue} »» Syncing from local $2 to remote ${folder} every ${Yellow}${sync_interval}${Blue} second(s)..."
+    echo -e "${Blue} »» Syncing from local $2 to remote ${folder}${1} every ${Yellow}${sync_interval}${Blue} second(s)..."
   fi
   sleep ${sync_interval}
 done
