@@ -1,12 +1,14 @@
 # autoscripts
 
-**Scripts for UNSW usage**
+**Scripts for UNSW remote servers**
 
 *Change the following before using UNSW server scripts:*
 
 zid: Your zID
+
 folder: A local remote sub directory for quick access (Set to `~/` for home or if unsure)
 
+**Script Usage**
 
 >**zlogin:** Login to UNSW CSE servers remotely.
 >
