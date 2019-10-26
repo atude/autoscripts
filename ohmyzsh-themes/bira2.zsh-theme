@@ -15,14 +15,12 @@ local venv_prompt='$(virtualenv_prompt_info)'
 
 ZSH_THEME_RVM_PROMPT_OPTIONS="i v g"
 
-PROMPT="$FG[199]╭─ ${venv_prompt}${user_host}${current_dir}${git_branch}
-$FG[199]╰─ %B${user_symbol}%b "
+PROMPT="$FG[199]${venv_prompt}${user_host}${current_dir}${git_branch}
+$FG[199]%B${user_symbol}%b "
 RPROMPT="%B${return_code}%b"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$FG[156]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}"
 
 ZSH_THEME_VIRTUAL_ENV_PROMPT_PREFIX="%{$fg[green]%}‹" 
 ZSH_THEME_VIRTUAL_ENV_PROMPT_SUFFIX="› %{$reset_color%}" 
