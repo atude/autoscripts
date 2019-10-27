@@ -6,12 +6,12 @@ sync_interval="1"
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ];
 then
-  echo -e "${Yellow} »» Usage: zsync <remote-folder/../> <local-dir/../> [interval{1s}]"
+  echo -e "${Yellow} »» Usage: zsync <local-dir/../> <remote-folder/../> [interval{1s}]"
   exit
 fi
 
 echo -e "${Blue} »» Setting up sync..."
-rsync -a "${2}" "${zid}@cse.unsw.edu.au:${folder}${1}"
+rsync -a "${1}" "${zid}@cse.unsw.edu.au:${folder}${2}"
 
 clear
 if [ $? -eq 0 ]; then
@@ -31,9 +31,9 @@ echo -e "${Yellow} »» Leave this tab running in the background. Use ${Red}CTRL
 
 while true; 
 do
-  rsync -a "${2}" "${zid}@cse.unsw.edu.au:${folder}${1}"
+  rsync -a "${1}" "${zid}@cse.unsw.edu.au:${folder}${2}"
   if [ $? -eq 0 ]; then
-    echo -e "${Blue} »» Syncing from local $2 to remote ${folder}${1} every ${Yellow}${sync_interval}${Blue} second(s)..."
+    echo -e "${Blue} »» Syncing from local $1 to remote ${folder}${2} every ${Yellow}${sync_interval}${Blue} second(s)..."
   fi
   sleep ${sync_interval}
 done

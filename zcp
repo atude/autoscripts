@@ -4,12 +4,12 @@ folder="~/code/"
 
 if [ "$#" -lt 2 ];
 then
-  echo -e "${Yellow} »» Usage: zcp <remote-folder> <file1, file2, ...>"
+  echo -e "${Yellow} »» Usage: zcp <file1, file2, ...> <remote-folder/../>"
   exit
 fi
 
-echo -e "${Blue} »» Moving ${@:2} to remote ${folder}${1}${Yellow}"
-scp "${@:2}" "${zid}@cse.unsw.edu.au:${folder}${1}"
+echo -e "${Blue} »» Moving ${@:1:$#-1} to remote ${folder}${!#}${Yellow}"
+scp "${@:1:$#-1}" "${zid}@cse.unsw.edu.au:${folder}${!#}"
 
 if [ $? -eq 0 ]; then
   echo -e "${Green} »» Moved files to UNSW servers successfully."

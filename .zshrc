@@ -5,7 +5,7 @@ PATH="$PATH:/home/atude/corelx/_scripts/"
 alias goto='. ~/corelx/_scripts/goto'
 # Add windows apps to cli
 alias code='"/mnt/c/Users/mozam/AppData/Local/Programs/Microsoft VS Code/bin/code"'
-alias explorer='/c/windows/explorer.exe'
+alias explorer='/mnt/c/windows/explorer.exe'
 #
 # <- End custom edits
 #
