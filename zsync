@@ -6,7 +6,7 @@ sync_interval="1"
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ];
 then
-  echo -e "${Yellow} »» Usage: zsync <local-dir/../> <remote-folder/../> [interval{1s}]"
+  echo -e "${Yellow} »» Usage: zsync <local-dir> <remote-dir> [interval{1s}]"
   exit
 fi
 
