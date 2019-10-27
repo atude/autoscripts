@@ -13,11 +13,11 @@
 
 >**zcp:** Copy files from local to UNSW remote server.
 >
->*Usage:* `zcp <remote-folder> <file1, file2, ...>`
+>*Usage:* `zcp <file1, file2, ...> <remote-dir>`
 
 >**zsync:** Sync a local directory to a UNSW remote directory.
 >
->*Usage:* `zsync <remote-folder/../> <local-dir/../> [interval{1s}]`
+>*Usage:* `zsync <local-dir> <remote-dir> [interval{1s}]`
 
 
 **Other Scripts**
