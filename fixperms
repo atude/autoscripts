@@ -2,7 +2,17 @@
 #Resets files and directories to default perms
 #recursively in current directory
 
+echo -e "${Red} »» This will reset all permissions to defaults."
+echo -e "${Red} »» Do not use this on root folders."
 sudo true
-find . -type d -exec chmod 755 {} \;
-find . -type f -exec chmod 644 {} \;
-echo -e "${Green} »» Pemissions reset"
+if [ "$1" = "x" ]; then
+  echo -e "${Yellow} »» Setting files to execute..."
+  find . -type d -exec chmod 755 {} \;
+  find . -type f -exec chmod 755 {} \;
+else
+  echo -e "${Yellow} »» Setting files to default..."
+  find . -type d -exec chmod 755 {} \;
+  find . -type f -exec chmod 644 {} \;
+fi
+
+echo -e "${Green} »» Pemissions reset."

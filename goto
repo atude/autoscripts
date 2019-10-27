@@ -20,7 +20,7 @@ else
     elif cd ./math"$2" >/dev/null 2>&1;
     then
     else
-    echo -e "${Red} »» Failed to goto directory @ $1 -> $2"
+    echo -e "${Red} »» Failed to goto directory @ $1 -> $2."
     fi
   fi 
 fi

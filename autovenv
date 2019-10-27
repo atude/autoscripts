@@ -1,5 +1,5 @@
 #!/bin/bash
-#autovenv by moz
+# autovenv
 
 echo "--> Creating virtualenv..."
 virtualenv --python=/usr/bin/python3 venv
