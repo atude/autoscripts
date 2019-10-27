@@ -1,0 +1,25 @@
+#!/bin/bash
+#Auto push scripts and set perms
+
+if [ "$#" -lt 1 ]; then
+  echo -e "${Yellow} »» Usage: scripts [push]"
+  exit
+fi
+
+if [ "$1" == "push" ]; then
+  echo -e "${Blue} »» Preparing and pushing scripts to git...${Yellow}"
+  cp ~/.zshrc ~/corelx/_scripts
+  cp ~/.oh-my-zsh/themes/cyber* ~/corelx/_scripts/omz-themes/
+
+  cd  ~/corelx/_scripts
+
+  git add .
+  git commit -m "[**Auto commit**]"
+  git push
+
+  if [ $? -eq 0 ]; then
+    echo -e "${Green} »» Pushed to 'autoscripts' repo."
+  else
+    echo -e "${Red} »» Failed to push; check output for details."
+  fi
+fi

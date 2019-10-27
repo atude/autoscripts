@@ -1,0 +1,8 @@
+#!/bin/bash
+#Resets files and directories to default perms
+#recursively in current directory
+
+sudo true
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;
+echo -e "${Green} »» Pemissions reset"
