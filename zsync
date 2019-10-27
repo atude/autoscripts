@@ -1,7 +1,7 @@
 #!/bin/bash
 # Auto sync from local to UNSW remote directories
 zid="z5209948"
-folder="~/code/"
+folder="~/"
 sync_interval="1"
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ];

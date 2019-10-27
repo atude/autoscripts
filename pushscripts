@@ -2,6 +2,8 @@
 
 echo -e "${Blue} »» Preparing and pushing scripts to git...${Yellow}"
 cp ~/.zshrc ~/corelx/_scripts
+cp ~/.oh-my-zsh/themes/cyber* ~/corelx/_scripts/omz-themes/
+
 cd  ~/corelx/_scripts
 git add .
 git commit -m "[**Auto commit**]"
