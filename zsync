@@ -3,24 +3,76 @@
 zid="z5209948"
 folder="~/code/"
 sync_interval="1"
+is_remote="0"
 
-if [ "$#" -lt 2 ] || [ "$#" -gt 3 ];
+#Define dosync
+dosync() {
+  if [ $is_remote = "0" ]; then
+    #Standard sync
+    rsync -a "${1}" "${remotedir}"
+  else
+    #Set reverse sync from remote
+    rsync -a "${remotedir}" "${1}"
+  fi
+}
+
+#Define dosync
+zsync_help() {
+    echo -e "${Yellow} »» Usage: zsync <local-dir> <remote-dir> [interval{1s}]"
+    echo ""
+    echo -e " -r\tReverses sync to remote from local"
+    echo -e " -h\tOpens this help menu"
+    echo  ""
+}
+
+#Check for flags
+for arg in "$@"
+do
+  #Check for help arg
+  if [ $arg = "-h" ]; then
+    zsync_help
+    exit
+  fi
+
+  #Set reverse sync
+  if [ $arg = "-r" ]; then
+    is_remote="1"
+  fi
+done
+
+#Remove flag args
+for arg 
+do
+  shift
+  if [[ "$arg" =~ ^[-][a-z]?$ ]]; then 
+    continue 
+  fi
+  set -- "$@" "$arg"
+done
+
+if [ "$#" -lt 2 ];
 then
   echo -e "${Yellow} »» Usage: zsync <local-dir> <remote-dir> [interval{1s}]"
+  echo -e "${Yellow} »» Use zsync -h for all options."
   exit
 fi
 
-echo -e "${Blue} »» Setting up sync..."
-rsync -a "${1}" "${zid}@cse.unsw.edu.au:${folder}${2}"
+#Set remote dir as var
+remotedir="${zid}@cse.unsw.edu.au:${folder}${2}"
 
+#Test sync successful
+echo -e "${Blue} »» Testing sync..."
+dosync
 clear
+
 if [ $? -eq 0 ]; then
-  echo -e "${Green} »» Sync setup complete."
+  echo -e "${Green} »» Sync test successful."
 else
   echo -e "${Red} »» Failed to sync files; check output for details."
   exit
 fi
 
+#Set sync interval and prep cli
 if [ "$#" -eq 3 ]; then
   sync_interval=${3}
   echo -e "${Blue} »» Sync interval set to ${sync_interval} seconds."
@@ -29,12 +81,21 @@ else
 fi
 echo -e "${Yellow} »» Leave this tab running in the background. Use ${Red}CTRL+C ${Yellow}to stop sync."
 
+#Perform continous sync
 while true; 
 do
-  rsync -a "${1}" "${zid}@cse.unsw.edu.au:${folder}${2}"
+  dosync
+
   if [ $? -eq 0 ]; then
-    echo -e "${Blue} »» Syncing from local $1 to remote ${folder}${2} every ${Yellow}${sync_interval}${Blue} second(s)..."
+    if [ $is_remote = "0" ]; then
+      echo -e "${Blue} »» Syncing from local ${1} to remote ${remotedir} every ${Yellow}${sync_interval}${Blue} second(s)..."
+    else 
+      echo -e "${Blue} »» Syncing from remote ${remotedir} to local ${1} every ${Yellow}${sync_interval}${Blue} second(s)..."
+    fi
+  else
+    echo -e "${Red} »» Sync error, stopping..."
+    exit
   fi
+
   sleep ${sync_interval}
 done
-

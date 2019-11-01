@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# Source this in .bashrc/.zshrc for autocompletion
+complete -W "work uni projects scripts desktop" goto
+complete -W "push" scripts
+complete -W "x" fixperms
+complete -W "-r" zsync

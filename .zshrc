@@ -1,13 +1,20 @@
+###################################################################
+#
 # -> My custom edits:
+#
 # Add scripts to path
 PATH="$PATH:/home/atude/corelx/_scripts/"
+#
 # Enable cd via custom goto
 alias goto='. ~/corelx/_scripts/goto'
+#
 # Add windows apps to cli
 alias code='"/mnt/c/Users/mozam/AppData/Local/Programs/Microsoft VS Code/bin/code"'
 alias explorer='/mnt/c/windows/explorer.exe'
 #
 # <- End custom edits
+#
+###################################################################
 #
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -121,4 +128,10 @@ export Yellow='\033[0;33m'
 #  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
 #  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX" 
 #}
+# 
+#	-> My edits
 #
+# Enable bash autocompletion for _scripts
+source ~/corelx/_scripts/_autocompletion
+#
+# <- End my edits
