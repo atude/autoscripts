@@ -1,9 +1,6 @@
 #!/bin/sh
 
-if [ "$1" = "desktop" ];
-then 
-  cd /mnt/c/Users/mozam/desktop
-elif [ "$#" -eq 0 ]; 
+if [ "$#" -eq 0 ]; 
 then
   cd ~/corelx
 else 

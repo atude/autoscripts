@@ -1,7 +1,22 @@
 #!/bin/bash
 #
 # Source this in .bashrc/.zshrc for autocompletion
-complete -W "work uni projects scripts desktop" goto
+# complete -W "work uni projects scripts desktop" goto
+
 complete -W "push" scripts
 complete -W "x" fixperms
 complete -W "-r" zsync
+
+goto_set="work projects uni scripts"
+goto_arr=("work" "projects" "uni" "scripts")
+
+_goto_completions()
+{
+  if [ "${#COMP_WORDS[@]}" == "1" ] || [[ ! " ${goto_arr[@]} " =~ " ${COMP_WORDS[1]} " ]]; then
+    COMPREPLY=($(compgen -W "${goto_set}" "${COMP_WORDS[1]}"))
+  elif [[ "${#COMP_WORDS[@]}" -lt 4 ]] ; then
+    COMPREPLY=($(cd ~/corelx/_"${COMP_WORDS[1]}" && compgen -d "${COMP_WORDS[2]}"))
+  fi
+}
+
+complete -F _goto_completions goto
