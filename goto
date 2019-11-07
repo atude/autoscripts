@@ -4,9 +4,22 @@ if [ "$#" -eq 0 ];
 then
   cd ~/corelx
 else 
+  currpath=~/corelx/_"$1"
   cd ~/corelx/_"$1"/ >/dev/null 2>&1;
 
-  if [ "$2" != "" ];
+  argv=("$@")
+  for i in {2.."$#"}
+  do
+    if [ -d "${currpath}" ]; then
+      currpath="${currpath}/${argv[i]}"
+    fi
+
+    x="${i}"
+  done
+
+  #echo "${currpath}"
+
+  if [ "$1" = "uni" ];
   then   
     if cd ./"$2" >/dev/null 2>&1;
     then
@@ -17,7 +30,9 @@ else
     elif cd ./math"$2" >/dev/null 2>&1;
     then
     else
-    echo -e "${Red} »» Failed to goto directory @ $1 -> $2."
+    echo -e "${Red} »» "$2" is not a valid course."
     fi
-  fi 
+  else
+    cd "${currpath}"
+  fi
 fi

@@ -14,9 +14,37 @@ _goto_completions()
 {
   if [ "${#COMP_WORDS[@]}" == "1" ] || [[ ! " ${goto_arr[@]} " =~ " ${COMP_WORDS[1]} " ]]; then
     COMPREPLY=($(compgen -W "${goto_set}" "${COMP_WORDS[1]}"))
-  elif [[ "${#COMP_WORDS[@]}" -lt 4 ]] ; then
-    COMPREPLY=($(cd ~/corelx/_"${COMP_WORDS[1]}" && compgen -d "${COMP_WORDS[2]}"))
+  else
+    currpath=~/corelx/_"${COMP_WORDS[1]}"
+    prevpath="${currpath}"
+    
+    for i in {2.."$((${#COMP_WORDS[@]}))"}
+    do
+      if [ -d "${currpath}" ]; then
+        currpath="${currpath}/${COMP_WORDS[i]}"
+      fi
+
+      x="${i}"
+    done
+
+    prevpath=${currpath%/*}
+
+    if [ -d "${currpath}" ]; then
+      COMPREPLY=($(cd "${currpath}" && compgen -d "${COMP_WORDS[x]}"))
+    else
+      COMPREPLY=($(cd "${prevpath}" && compgen -d "${COMP_WORDS[x]}"))
+    fi
   fi
 }
+
+#Old completion
+# _goto_completions()
+# {
+#   if [ "${#COMP_WORDS[@]}" == "1" ] || [[ ! " ${goto_arr[@]} " =~ " ${COMP_WORDS[1]} " ]]; then
+#     COMPREPLY=($(compgen -W "${goto_set}" "${COMP_WORDS[1]}"))
+#   elif [[ "${#COMP_WORDS[@]}" -lt 4 ]] ; then
+#     COMPREPLY=($(cd ~/corelx/_"${COMP_WORDS[1]}" && compgen -d "${COMP_WORDS[2]}"))
+#   fi
+# }
 
 complete -F _goto_completions goto
