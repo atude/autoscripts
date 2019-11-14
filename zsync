@@ -25,6 +25,17 @@ zsync_help() {
     echo  ""
 }
 
+
+#Set sync from config
+if [ -f "_syncconfig" ] && [ "$1" != "-x" ]; then
+  echo -e "${Blue} »» Found config file; setting up sync..."
+  from=`cat ./_syncconfig | cut -d " " -f1`
+  to=`cat ./_syncconfig | cut -d " " -f2`
+  sync_interval=`cat ./_syncconfig | cut -d " " -f3`
+  zsync -x "${from}" "${to}" "${sync_interval}"
+  exit
+fi
+
 #Check for flags
 for arg in "$@"
 do
@@ -38,7 +49,7 @@ do
   if [ $arg = "-r" ]; then
     is_remote="1"
   fi
-done
+done 
 
 #Remove flag args
 for arg 
@@ -79,22 +90,33 @@ if [ "$#" -eq 3 ]; then
 else
   echo -e "${Yellow} »» No interval set; default set to 1s."
 fi
+
+if [ $is_remote = "0" ]; then
+    echo -e "${Blue} »» Syncing from local ${1} to remote ${remotedir} every ${Yellow}${sync_interval}${Blue} second(s)."
+else 
+  echo -e "${Blue} »» Syncing from remote ${remotedir} to local ${1} every ${Yellow}${sync_interval}${Blue} second(s)."
+fi
+
 echo -e "${Yellow} »» Leave this tab running in the background. Use ${Red}CTRL+C ${Yellow}to stop sync."
 
 #Perform continous sync
+sync_icon=("-" "\\" "|" "/")
+i=0
 while true; 
 do
   dosync
 
   if [ $? -eq 0 ]; then
-    if [ $is_remote = "0" ]; then
-      echo -e "${Blue} »» Syncing from local ${1} to remote ${remotedir} every ${Yellow}${sync_interval}${Blue} second(s)..."
-    else 
-      echo -e "${Blue} »» Syncing from remote ${remotedir} to local ${1} every ${Yellow}${sync_interval}${Blue} second(s)..."
-    fi
-  else
-    echo -e "${Red} »» Sync error, stopping..."
+    echo -en "${Blue} »» ${Yellow}${sync_icon[i]} ${Blue}Syncing..." "\r"
+  else 
+    echo -e "${Red} »» Sync interrupted, stopping..."
     exit
+  fi
+
+  i=`expr ${i} + 1`
+
+  if [[ $i -eq 4 ]]; then
+    i=0
   fi
 
   sleep ${sync_interval}
