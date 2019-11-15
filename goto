@@ -11,26 +11,21 @@ else
   for i in {2.."$#"}
   do
     if [ -d "${currpath}" ]; then
-      currpath="${currpath}/${argv[i]}"
+      if [ -d "${currpath}/${argv[i]}" ]; then 
+        currpath="${currpath}/${argv[i]}"
+      elif [ -d "${currpath}/comp${argv[i]}" ]; then 
+        currpath="${currpath}/comp${argv[i]}"
+      elif [ -d "${currpath}/seng${argv[i]}" ]; then 
+        currpath="${currpath}/seng${argv[i]}"
+      elif [ -d "${currpath}/math${argv[i]}" ]; then 
+        currpath="${currpath}/math${argv[i]}"
+      fi
     fi
 
     x="${i}"
   done
 
-  #echo "${currpath}"
-
-  # if [ "$1" = "uni" ];
-  # then   
-  #   if cd ./"$2" >/dev/null 2>&1; then
-  #   elif cd ./comp"$2" >/dev/null 2>&1; then 
-  #   elif cd ./seng"$2" >/dev/null 2>&1; then
-  #   elif cd ./math"$2" >/dev/null 2>&1; then
-  #   else
-  #     echo -e "${Red} »» "$2" is not a valid course."
-  #   fi
-  # else
   if [ -d "${currpath}" ]; then
     cd "${currpath}"
   fi
-  # fi
 fi

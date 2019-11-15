@@ -21,7 +21,15 @@ _goto_completions()
     for i in {2.."$((${#COMP_WORDS[@]}))"}
     do
       if [ -d "${currpath}" ]; then
-        currpath="${currpath}/${COMP_WORDS[i]}"
+        if [ -d "${currpath}/${COMP_WORDS[i]}" ]; then 
+          currpath="${currpath}/${COMP_WORDS[i]}"
+        elif [ -d "${currpath}/comp${COMP_WORDS[i]}" ]; then 
+          currpath="${currpath}/comp${COMP_WORDS[i]}"
+        elif [ -d "${currpath}/seng${COMP_WORDS[i]}" ]; then 
+          currpath="${currpath}/seng${COMP_WORDS[i]}"
+        elif [ -d "${currpath}/math${COMP_WORDS[i]}" ]; then 
+          currpath="${currpath}/math${COMP_WORDS[i]}"
+        fi
       fi
 
       x="${i}"
