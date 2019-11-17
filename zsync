@@ -9,10 +9,10 @@ is_remote="0"
 dosync() {
   if [ $is_remote = "0" ]; then
     #Standard sync
-    rsync -a "${1}" "${remotedir}"
+    rsync -a -e ssh "${1}" "${remotedir}"
   else
     #Set reverse sync from remote
-    rsync -a "${remotedir}" "${1}"
+    rsync -a -e ssh "${remotedir}" "${1}"
   fi
 }
 
@@ -102,11 +102,12 @@ echo -e "${Yellow} »» Leave this tab running in the background. Use ${Red}CTRL
 #Perform continous sync
 sync_icon=("-" "\\" "|" "/")
 i=0
+
 while true; 
 do
   dosync
 
-  if [ $? -eq 0 ]; then
+  if [ $? -ne 20 ]; then
     echo -en "${Blue} »» ${Yellow}${sync_icon[i]} ${Blue}Syncing..." "\r"
   else 
     echo -e "${Red} »» Sync interrupted, stopping..."
