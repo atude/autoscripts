@@ -4,15 +4,16 @@ zid="z5209948"
 folder="~/code/"
 sync_interval="1"
 is_remote="0"
+is_create_config="0"
 
 #Define dosync
 dosync() {
   if [ $is_remote = "0" ]; then
     #Standard sync
-    rsync -a -e ssh "${1}" "${remotedir}"
+    rsync --exclude '.syncconfig' -q -a -e ssh "${1}" "${remotedir}"
   else
     #Set reverse sync from remote
-    rsync -a -e ssh "${remotedir}" "${1}"
+    rsync --exclude '.syncconfig' -q -a -e ssh "${remotedir}" "${1}"
   fi
 }
 
@@ -22,16 +23,17 @@ zsync_help() {
     echo ""
     echo -e " -r\tReverses sync to remote from local"
     echo -e " -h\tOpens this help menu"
+    echo -e " -s\tCreates a default config to use on this folder"
+    echo -e " -s\t\t -> Config is used by running zsync"
     echo  ""
 }
 
-
 #Set sync from config
-if [ -f "_syncconfig" ] && [ "$1" != "-x" ]; then
+if [ -f ".syncconfig" ] && [ "$1" != "-x" ]; then
   echo -e "${Blue} »» Found config file; setting up sync..."
-  from=`cat ./_syncconfig | cut -d " " -f1`
-  to=`cat ./_syncconfig | cut -d " " -f2`
-  sync_interval=`cat ./_syncconfig | cut -d " " -f3`
+  from=`cat ./.syncconfig | cut -d " " -f1`
+  to=`cat ./.syncconfig | cut -d " " -f2`
+  sync_interval=`cat ./.syncconfig | cut -d " " -f3`
   zsync -x "${from}" "${to}" "${sync_interval}"
   exit
 fi
@@ -43,10 +45,16 @@ do
   if [ $arg = "-h" ]; then
     zsync_help
     exit
-  fi
+  elif [ $arg = "-s" ]; then
+    #Delete if exists
+    if [ -f ".syncconfig" ]; then
+      rm .syncconfig
+    fi
 
-  #Set reverse sync
-  if [ $arg = "-r" ]; then
+    #Set create config
+    is_create_config="1"
+  elif [ $arg = "-r" ]; then
+    #Set reverse sync
     is_remote="1"
   fi
 done 
@@ -74,6 +82,29 @@ remotedir="${zid}@cse.unsw.edu.au:${folder}${2}"
 #Test sync successful
 echo -e "${Blue} »» Testing sync..."
 dosync
+
+
+#Create config
+if [ "$is_create_config" = "1" ]; then
+  echo -e "${Blue} »» Creating new config file..."
+
+  if [ "${3}" = "" ]; then
+    timer="0"
+  else
+    timer="${3}"
+  fi
+
+  if [ $is_remote = "0" ]; then
+    echo "${1}" "${2}" "${timer}" > .syncconfig
+  else 
+    echo "${2}" "${1}" "${timer}" > .syncconfig
+  fi
+  
+  echo -e "${Green} »» Created config successfully. Use zsync to run."
+  exit
+fi
+
+
 clear
 
 if [ $? -eq 0 ]; then
