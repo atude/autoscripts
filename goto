@@ -1,31 +1,42 @@
-#!/bin/sh
+#!/bin/bash
+homedir=~/corelx
+#Custom goto
+#Use -> for search cd instead
 
-if [ "$#" -eq 0 ]; 
-then
-  cd ~/corelx
-else 
-  currpath=~/corelx/_"$1"
-  cd ~/corelx/_"$1"/ >/dev/null 2>&1;
+#Process find search
+if [[ "$1" =~ "@" ]]; then
+  cd "${homedir}"
+  findpath=`find -maxdepth 7 -type d -name "${2}"`
+  cd "${findpath}"
+else
+  #Standard goto
+  if [ "$#" -eq 0 ]; 
+  then
+    cd "${homedir}"
+  else 
+    currpath="${homedir}"/_"$1"
+    cd "${homedir}"/_"$1"/ >/dev/null 2>&1;
 
-  argv=("$@")
-  for i in {2.."$#"}
-  do
-    if [ -d "${currpath}" ]; then
-      if [ -d "${currpath}/${argv[i]}" ]; then 
-        currpath="${currpath}/${argv[i]}"
-      elif [ -d "${currpath}/comp${argv[i]}" ]; then 
-        currpath="${currpath}/comp${argv[i]}"
-      elif [ -d "${currpath}/seng${argv[i]}" ]; then 
-        currpath="${currpath}/seng${argv[i]}"
-      elif [ -d "${currpath}/math${argv[i]}" ]; then 
-        currpath="${currpath}/math${argv[i]}"
+    argv=("$@")
+    for i in {2.."$#"}
+    do
+      if [ -d "${currpath}" ]; then
+        if [ -d "${currpath}/${argv[i]}" ]; then 
+          currpath="${currpath}/${argv[i]}"
+        elif [ -d "${currpath}/comp${argv[i]}" ]; then 
+          currpath="${currpath}/comp${argv[i]}"
+        elif [ -d "${currpath}/seng${argv[i]}" ]; then 
+          currpath="${currpath}/seng${argv[i]}"
+        elif [ -d "${currpath}/math${argv[i]}" ]; then 
+          currpath="${currpath}/math${argv[i]}"
+        fi
       fi
+
+      x="${i}"
+    done
+
+    if [ -d "${currpath}" ]; then
+      cd "${currpath}"
     fi
-
-    x="${i}"
-  done
-
-  if [ -d "${currpath}" ]; then
-    cd "${currpath}"
   fi
 fi

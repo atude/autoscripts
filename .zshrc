@@ -135,3 +135,5 @@ export Yellow='\033[0;33m'
 source ~/corelx/_scripts/_autocompletion
 #
 # <- End my edits
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
