@@ -25,3 +25,7 @@
 >**autovenv:** Auto generate a virtual env in current directory, cleanly
 >
 >*Usage:* `autovenv`
+
+>**goto:** Find nested directory and cd
+>
+>*Usage:* `goto @ [directory]`
