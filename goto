@@ -1,5 +1,6 @@
 #!/bin/bash
 homedir=~/corelx
+dirdepth=5
 #Custom goto
 
 #Standard goto
@@ -33,7 +34,7 @@ else
   else
     #Process find search if standard fails
     cd "${homedir}"
-    findpath=`find -maxdepth 7 -type d -name "${1}"`
+    findpath=`find -maxdepth "${dirdepth}" -type d -name "${1}" | cut -f1 -d$'\n'`
     cd "${findpath}" #>/dev/null 2>&1;
   fi
 fi
