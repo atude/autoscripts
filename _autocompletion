@@ -7,8 +7,8 @@ complete -W "push" scripts
 complete -W "x" fixperms
 complete -W "-r" zsync
 
-goto_set="work projects uni scripts"
-goto_arr=("work" "projects" "uni" "scripts")
+goto_set="work projects uni scripts graphics"
+goto_arr=("work" "projects" "uni" "scripts" "graphics")
 
 _goto_completions()
 {
