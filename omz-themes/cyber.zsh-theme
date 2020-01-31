@@ -18,7 +18,7 @@ local venv_prompt='$(virtualenv_prompt_info)'
 
 ZSH_THEME_RVM_PROMPT_OPTIONS="i v g"
 
-PROMPT="${COL3}Ⲇ $COL2${venv_prompt}${user_host}${current_dir}${git_branch}
+PROMPT="${COL3}∆ $COL2${venv_prompt}${user_host}${current_dir}${git_branch}
 $COL2%B${user_symbol}%b "
 RPROMPT="%B${return_code}%b"
 
