@@ -1,0 +1,11 @@
+#!/bin/bash
+
+IFS=$'\n'
+sudo true
+
+execs=`cat /usr/share/applications/google-chrome.desktop | grep Exec`
+for i in $execs; do
+  sudo sed -i "s|$i|$i --enable-features=WebUIDarkMode --force-dark-mode|g" "/usr/share/applications/google-chrome.desktop"
+
+done 
+
