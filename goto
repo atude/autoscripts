@@ -1,5 +1,5 @@
 #!/bin/bash
-homedir=~/Core
+homedir=~/core
 dirdepth=5
 
 #Standard goto
