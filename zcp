@@ -1,6 +1,6 @@
 #!/bin/bash
 zid="z5209948"
-folder="~/core/"
+folder="~/code/"
 
 if [ "$#" -lt 2 ];
 then
