@@ -1,5 +1,13 @@
 # autoscripts
 
+> Note: For a better experience, add the following to your .bashrc/.zshrc:
+> ```
+> export Blue='\033[0;34m'
+> export Red='\033[0;31m'
+> export Green='\033[0;32m'
+> export Yellow='\033[0;33m' 
+> ```
+
 **Scripts for UNSW remote servers**
 
 *Change the following before using UNSW server scripts:*
