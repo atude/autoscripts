@@ -10,10 +10,10 @@ is_create_config="0"
 dosync() {
   if [ $is_remote = "0" ]; then
     #Standard sync
-    rsync --exclude '.syncconfig' -q -a -e ssh "${1}" "${remotedir}"
+    rsync --exclude '.syncconfig' -q -a -e ssh ${1} ${remotedir}
   else
     #Set reverse sync from remote
-    rsync --exclude '.syncconfig' -q -a -e ssh "${remotedir}" "${1}"
+    rsync --exclude '.syncconfig' -q -a -e ssh ${remotedir} ${1}
   fi
 }
 
